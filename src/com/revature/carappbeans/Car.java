@@ -1,5 +1,7 @@
 package com.revature.carappbeans;
 
+import java.util.ArrayList;
+
 public class Car {
 
 	public Car(int yearManufactured, String make, String model, String color, double stickerPrice) {
@@ -16,6 +18,8 @@ public class Car {
 	private String model;
 	private String color;
 	private double stickerPrice;
+	
+	public static ArrayList<Car> carList = new ArrayList<>();
 	
 	public int getYearManufactured() {
 		return yearManufactured;

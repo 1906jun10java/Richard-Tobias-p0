@@ -1,5 +1,7 @@
 package com.revature.carappbeans;
 
+import java.util.ArrayList;
+
 public class User {
 
 	public User() {}
@@ -15,6 +17,8 @@ public class User {
 	private String passwrd;
 	private String name;
 	private boolean access;
+	
+	public static ArrayList<User> userList = new ArrayList<>();
 
 	public String getUserName() {
 		return userName;
