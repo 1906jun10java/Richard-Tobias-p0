@@ -13,11 +13,11 @@ public class Employees implements Users {
 	}
 	
 	public static double[] viewAllPayments() {
-		
+		return null;
 	}
 	
 	public User login(String username, String passwrd) {
-		
+		return null;
 	}
 	
 	public void logout() {

@@ -10,15 +10,16 @@ public class Customers implements Users {
 	}
 	
 	public static Car[] viewMyCars(User u) {
-		return;
+		return null;
 	}
 	
 	public static double[] viewMyPayments(User u) {
-		return;
+		return null;
 	}
 	
 	public User login(String username, String passwrd) {
 		
+		return null;
 	}
 	
 	public void logout() {
