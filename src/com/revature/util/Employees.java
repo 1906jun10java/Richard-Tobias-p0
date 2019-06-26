@@ -16,7 +16,7 @@ public class Employees implements Users {
 		
 	}
 	
-	public User login(String username, String passwrd) {
+	public User login(boolean loggedIn) {
 		
 	}
 	

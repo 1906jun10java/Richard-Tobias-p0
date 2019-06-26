@@ -17,7 +17,7 @@ public class Customers implements Users {
 		return;
 	}
 	
-	public User login(String username, String passwrd) {
+	public User login(boolean loggedIn) {
 		
 	}
 	

@@ -2,6 +2,7 @@ package com.revature.carappbeans;
 
 public class User {
 
+	public User() {}
 	public User(String userName, String passwrd, String name) {
 		super();
 		this.userName = userName;
