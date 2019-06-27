@@ -18,5 +18,9 @@ public class Lots {
 
 	public static void displayLot() {
 		carLot = generateCars(carLot);
+		System.out.println("Displaying cars available in the lot: ");
+		while(carLot.listIterator().hasNext()) {
+			System.out.println(carLot.listIterator().next());
+		}
 	}
 }
