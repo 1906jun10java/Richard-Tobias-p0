@@ -4,6 +4,6 @@ import com.revature.carappbeans.User;
 
 public interface Users {
 
-	User login(String username, String passwrd);
+	User login(boolean loggedIn);
 	void logout();
 }

@@ -13,7 +13,7 @@ public class Scanners {
 		System.out.println("Please enter your Username: ");
 		String attempt = sc.next();
 		while (con) {
-			for (User user : User.userList) {
+			for (User user : userList) {
 				if(attempt.equals(user.getUserName())) {
 					con = false;
 					u = user;
@@ -58,5 +58,5 @@ public class Scanners {
 			}
 		}
 		return amount;
-	}
+	}//testing the merge stuff
 }

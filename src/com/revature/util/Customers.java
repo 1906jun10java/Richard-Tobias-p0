@@ -5,7 +5,7 @@ import com.revature.carappbeans.User;
 
 public class Customers implements Users {
 
-	public static double makeOffer(double offer) {
+	public static double makeOffer(double offer, Car c) {
 		return 0.0;
 	}
 	
@@ -18,17 +18,10 @@ public class Customers implements Users {
 	}
 	
 	public User login(boolean loggedIn) {
-		
 		return null;
 	}
 	
 	public void logout() {
 		
-	}
-
-	@Override
-	public User login(String username, String passwrd) {
-		
-		return null;
 	}
 }
