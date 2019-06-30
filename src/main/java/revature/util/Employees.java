@@ -1,6 +1,6 @@
-package com.revature.util;
+package revature.util;
 
-import com.revature.carappbeans.User;
+import revature.carappbeans.User;
 
 public class Employees implements Users {
 

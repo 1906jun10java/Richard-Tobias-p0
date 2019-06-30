@@ -1,9 +1,8 @@
-package com.revature.util;
+package revature.util;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import com.revature.carappbeans.User;
+import revature.carappbeans.User;
 
 public class Scanners {
 
@@ -13,7 +12,7 @@ public class Scanners {
 		System.out.println("Please enter your Username: ");
 		String attempt = sc.next();
 		while (con) {
-			for (User user : userList) {
+			for (User user : User.userList) {
 				if(attempt.equals(user.getUserName())) {
 					con = false;
 					u = user;

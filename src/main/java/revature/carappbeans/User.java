@@ -1,4 +1,7 @@
-package com.revature.carappbeans;
+package revature.carappbeans;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
@@ -10,6 +13,8 @@ public class User {
 		this.name = name;
 		this.access = false;
 	}
+	
+	public static List<User> userList = new ArrayList<>();
 
 	private String userName;
 	private String passwrd;
