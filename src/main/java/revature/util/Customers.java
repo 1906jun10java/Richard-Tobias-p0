@@ -3,7 +3,7 @@ package revature.util;
 import revature.carappbeans.Car;
 import revature.carappbeans.User;
 
-public class Customers implements Users {
+public class Customers {
 
 	public static double makeOffer(double offer, Car c) {
 		return 0.0;
@@ -17,7 +17,7 @@ public class Customers implements Users {
 		return null;
 	}
 	
-	public User login(boolean loggedIn) {
+	public static User login(boolean loggedIn) {
 		return null;
 	}
 	
