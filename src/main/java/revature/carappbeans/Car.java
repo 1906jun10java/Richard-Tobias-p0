@@ -16,6 +16,7 @@ public class Car {
 	private String model;
 	private String color;
 	private double stickerPrice;
+	private int id;
 	
 	public int getYearManufactured() {
 		return yearManufactured;
@@ -106,6 +107,14 @@ public class Car {
 
 	public void setStickerPrice(double stickerPrice) {
 		this.stickerPrice = stickerPrice;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
