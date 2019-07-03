@@ -1,5 +1,6 @@
 package revature.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.daoimpl.CarDAOImp;
@@ -10,15 +11,20 @@ import revature.carappbeans.User;
 public class Customers {
 	
 	static CarDAOImp cdi = new CarDAOImp();
-	List<Car> carList = cdi.getCarList();
+	
 
 	public static double makeOffer(double offer, Car c) {
 		return 0.0;
 	}
 	
-	public static Car[] viewMyCars(User u) {
-		for (Car c : CarList) {
-			
+	public static List<Car> viewMyCars(User u) {
+		List<Car> carList = new ArrayList<>();
+		try {carList = cdi.getCarList();}
+		catch(Exception e) {
+		
+		}
+		for (Car c : carList) {
+			if 
 		}
 	}
 	
