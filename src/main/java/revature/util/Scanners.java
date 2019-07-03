@@ -85,12 +85,13 @@ public class Scanners {
 			} else {
 				Log.info("invalid choice");
 				System.out.println("Invalid input. Please enter the number corresponding to your choice.");
-				System.out.println("1. Login \n" + "2. View Cars in Lot \n" + "3. Exit the program");
+				System.out.println("1. Login \n" + "2. View Cars in Lot \n" + "3. Create a new Account \n" + "4. Exit program");
 			}
 			switch(choice) {
 			case 1: Customers.login(getUsername(sc)); break;
 			case 2: Lots.displayLot(); break;
 			case 3: break;
+			case 4: break;
 			case 0: Employees.login(getUsername(sc)); break;
 			default:Log.info("The switch case reached it's default case. Invalid scanner input"); break;
 			}
