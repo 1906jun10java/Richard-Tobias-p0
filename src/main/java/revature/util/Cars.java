@@ -1,9 +1,14 @@
 package revature.util;
 
-import revature.carappbeans.Car;
-import revature.carappbeans.User;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.revature.carappbeans.Car;
+import com.revature.carappbeans.User;
 
 public class Cars {
+	
+	public static List<Car> carList = new ArrayList<Car>();
 
 	public static void addToLot(Car c) {
 		

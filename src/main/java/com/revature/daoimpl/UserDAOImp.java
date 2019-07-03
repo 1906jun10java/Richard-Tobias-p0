@@ -8,16 +8,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.carappbeans.User;
 import com.revature.connections.ConnFactory;
 import com.revature.dao.UserDAO;
 
-import revature.carappbeans.User;
+import revature.util.Users;
 
 public class UserDAOImp implements UserDAO {
 
 	public static ConnFactory cf = ConnFactory.getInstance();
-
-	@Override
+	
 	public void createUser(String username, String password, String name) throws SQLException {
 		Connection conn = cf.getConnection();
 		String sql = "INSERT INTO USER VALUES(USERSEQ.NEXTVAL,?,?,?)";
@@ -29,9 +29,7 @@ public class UserDAOImp implements UserDAO {
 
 	}
 
-	@Override
 	public List<User> getUserList() throws SQLException {
-		List<User> userList = new ArrayList<>();
 		Connection conn = cf.getConnection();
 		String sql = "SELECT * FROM USER";
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -39,9 +37,9 @@ public class UserDAOImp implements UserDAO {
 		User u = null;
 		while (rs.next()) {
 			u = new User(rs.getString(1), rs.getString(2), rs.getString(3));
-			userList.add(u);
+			Users.userList.add(u);
 		}
 
-		return userList;
+		return Users.userList;
 	}
 }

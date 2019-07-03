@@ -6,9 +6,9 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import revature.Driver;
+import com.revature.carappbeans.User;
 
-import revature.carappbeans.User;
+import revature.Driver;
 
 public class Scanners {
 	static Logger Log = LogManager.getLogger(Driver.class);
@@ -56,11 +56,11 @@ public class Scanners {
 		boolean con = true;
 		double amount = 0.0;
 		while (con) {
-			System.out.println("Please enter the money value desired ($.¢¢): ");
+			System.out.println("Please enter the money value desired ($.ï¿½ï¿½): ");
 			try { amount = sc.nextDouble(); con = false;}
 			catch(InputMismatchException e) {
 				Log.error("Data entry was not a numeric value.");
-				System.out.println("Please enter a valid money value ($.¢¢): ");
+				System.out.println("Please enter a valid money value ($.ï¿½ï¿½): ");
 				sc.hasNext();
 			}
 		}

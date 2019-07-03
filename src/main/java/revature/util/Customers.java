@@ -1,7 +1,7 @@
 package revature.util;
 
-import revature.carappbeans.Car;
-import revature.carappbeans.User;
+import com.revature.carappbeans.Car;
+import com.revature.carappbeans.User;
 
 public class Customers {
 
