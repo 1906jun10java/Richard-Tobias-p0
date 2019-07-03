@@ -1,11 +1,13 @@
-package revature.carappbeans;
+package com.revature.carappbeans;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class User {
-
+	
+	public static ArrayList<User> userList = new ArrayList<>();
+	
 	public User() {}
+	
 	public User(String userName, String passwrd, String name) {
 		super();
 		this.userName = userName;
@@ -13,14 +15,11 @@ public class User {
 		this.name = name;
 		this.access = false;
 	}
-	
-	public static List<User> userList = new ArrayList<>();
 
 	private String userName;
 	private String passwrd;
 	private String name;
 	private boolean access;
-	private int id;
 
 	public String getUserName() {
 		return userName;
@@ -94,12 +93,6 @@ public class User {
 
 	public void setAccess(boolean access) {
 		this.access = access;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 
 }
