@@ -2,13 +2,32 @@ package com.revature.carappbeans;
 
 public class Car {
 
-	public Car(int yearManufactured, String make, String model, String color, double stickerPrice) {
+
+	private int car_id;
+	private String make;
+	private String model;
+	private String color;
+	private double stickerPrice;
+	private int yearManufactured;
+
+	public Car(int car_id, String make, String model, String color, double stickerPrice, int yearManufactured) {
 		super();
+		this.car_id = car_id;
+
 		this.yearManufactured = yearManufactured;
-		this.make = make;
-		this.model = model;
-		this.color = color;
-		this.stickerPrice = stickerPrice;
+	}
+	
+	
+
+	public int getCar_id() {
+		return car_id;
+	}
+
+	public void setCar_id(int car_id) {
+		this.car_id = car_id;
+	}
+
+
 	}
 
 	private int yearManufactured;
@@ -17,6 +36,7 @@ public class Car {
 	private String color;
 	private double stickerPrice;
 	
+
 	public int getYearManufactured() {
 		return yearManufactured;
 	}
@@ -92,20 +112,11 @@ public class Car {
 		return true;
 	}
 
-	public String getColor() {
-		return color;
-	}
 
-	public void setColor(String color) {
-		this.color = color;
-	}
 
-	public double getStickerPrice() {
-		return stickerPrice;
+	@Override
+	public String toString() {
+		return "Car [car_id=" + car_id + ", make=" + make + ", model=" + model + ", color=" + color + ", stickerPrice="
+				+ stickerPrice + ", yearManufactured=" + yearManufactured + "]";
 	}
-
-	public void setStickerPrice(double stickerPrice) {
-		this.stickerPrice = stickerPrice;
-	}
-
 }

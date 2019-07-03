@@ -3,7 +3,7 @@ package com.revature.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import revature.carappbeans.Car;
+import com.revature.carappbeans.Invoice;
 
 public interface InvoiceDAO {
 

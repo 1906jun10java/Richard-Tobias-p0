@@ -10,6 +10,7 @@ import revature.Driver;
 import revature.carappbeans.Car;
 import revature.carappbeans.User;
 
+
 public class Scanners {
 	static Logger Log = LogManager.getLogger(Driver.class);
 
@@ -55,14 +56,16 @@ public class Scanners {
 		boolean con = true;
 		double amount = 0.0;
 		while (con) {
-			System.out.println("Please enter the money value desired ($.¢¢): ");
+
+			System.out.println("Please enter the money value desired ($.Â¢Â¢): ");
 			try {
 				amount = sc.nextDouble();
 				con = false;
 			} catch (InputMismatchException e) {
 				Log.error("Data entry was not a numeric value.");
-				System.out.println("Please enter a valid money value ($.¢¢): ");
+				System.out.println("Please enter a valid money value ($.Â¢Â¢): ");
 				sc.next();
+
 			}
 		}
 		return amount;
@@ -128,7 +131,7 @@ public class Scanners {
 			try {sticker = sc.nextDouble(); con = false;}
 			catch(InputMismatchException e) {
 				Log.error("A double value was not entered");
-				System.out.println("Please enter a valid monetary value ($.¢¢)");
+				System.out.println("Please enter a valid monetary value ($.Â¢Â¢)");
 				sc.next();
 			}
 		}

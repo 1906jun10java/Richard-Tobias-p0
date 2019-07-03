@@ -2,62 +2,70 @@ package com.revature.carappbeans;
 
 public class Offer {
 
-	private User customer;
-	private User employee;
-	private Car car;
-	private double amount;
-	private boolean accepted = false;
 	
-	public Offer(User customer, User employee, Car car, double amount, boolean accepted) {
+	private int user_id;
+	private int car_id;
+	private double current_offer;
+	private String offer_date;
+	private int accepted;
+	
+	public Offer(int user_id, int car_id, double current_offer, String offer_date, int accepted) {
 		super();
-		this.customer = customer;
-		this.employee = employee;
-		this.car = car;
-		this.amount = amount;
+		this.user_id = user_id;
+		this.car_id = car_id;
+		this.current_offer = current_offer;
+		this.offer_date = offer_date;
 		this.accepted = accepted;
 	}
 
-	public User getCustomer() {
-		return customer;
+	public int getUser_id() {
+		return user_id;
 	}
 
-	public void setCustomer(User customer) {
-		this.customer = customer;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
-	public User getEmployee() {
-		return employee;
+	public int getCar_id() {
+		return car_id;
 	}
 
-	public void setEmployee(User employee) {
-		this.employee = employee;
+	public void setCar_id(int car_id) {
+		this.car_id = car_id;
 	}
 
-	public Car getCar() {
-		return car;
+	public double getCurrent_offer() {
+		return current_offer;
 	}
 
-	public void setCar(Car car) {
-		this.car = car;
+	public void setCurrent_offer(double current_offer) {
+		this.current_offer = current_offer;
 	}
 
-	public double getAmount() {
-		return amount;
+	public String getOffer_date() {
+		return offer_date;
 	}
 
-	public void setAmount(double amount) {
-		this.amount = amount;
+	public void setOffer_date(String offer_date) {
+		this.offer_date = offer_date;
 	}
 
-	public boolean isAccepted() {
+	public int isAccepted() {
 		return accepted;
 	}
 
-	public void setAccepted(boolean accepted) {
+	public void setAccepted(int accepted) {
+
+
+	
 		this.accepted = accepted;
 	}
 
 	@Override
+	public String toString() {
+		return "Offers [user_id=" + user_id + ", car_id=" + car_id + ", current_offer=" + current_offer
+				+ ", offer_date=" + offer_date + ", accepted=" + accepted + "]";
+
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -106,11 +114,6 @@ public class Offer {
 	public String toString() {
 		return "Offer [customer=" + customer + ", employee=" + employee + ", car=" + car + ", amount=" + amount
 				+ ", accepted=" + accepted + "]";
+
 	}
-	
-	
-	
-	
-	
-	
 }

@@ -5,7 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.Scanner;
 import org.junit.Test;
 
-import revature.carappbeans.User;
+import com.revature.carappbeans.User;
+
 import revature.util.Scanners;
 
 public class ScannerTests {

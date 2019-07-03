@@ -1,12 +1,8 @@
 package revature.util;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.revature.carappbeans.Car;
+import com.revature.carappbeans.User;
 
-import com.revature.daoimpl.CarDAOImp;
-
-import revature.carappbeans.Car;
-import revature.carappbeans.User;
 
 public class Customers {
 	

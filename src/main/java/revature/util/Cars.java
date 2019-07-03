@@ -1,14 +1,14 @@
 package revature.util;
 
-import revature.carappbeans.Car;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.sql.SQLException;
-
-import com.revature.daoimpl.CarDAOImp;
-import revature.carappbeans.User;
+import com.revature.carappbeans.Car;
+import com.revature.carappbeans.User;
 
 public class Cars {
-	static CarDAOImp cdi = new CarDAOImp();
+	
+	public static List<Car> carList = new ArrayList<Car>();
 
 	public static void addToLot(Car c) {
 		try {

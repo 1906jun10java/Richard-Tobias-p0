@@ -1,13 +1,9 @@
 package com.revature.carappbeans;
 
-import java.util.ArrayList;
-
 public class User {
-	
-	public static ArrayList<User> userList = new ArrayList<>();
-	
+
 	public User() {}
-	
+
 	public User(String userName, String passwrd, String name) {
 		super();
 		this.userName = userName;
