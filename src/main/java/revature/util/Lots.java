@@ -1,4 +1,4 @@
-package com.revature.util;
+package revature.util;
 
 public class Lots {
 

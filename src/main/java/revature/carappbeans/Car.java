@@ -1,4 +1,4 @@
-package com.revature.carappbeans;
+package revature.carappbeans;
 
 public class Car {
 
