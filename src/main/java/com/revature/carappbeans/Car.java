@@ -9,6 +9,15 @@ public class Car {
 	private double stickerPrice;
 	private int yearManufactured;
 
+	public Car(String make, String model, String color, double stickerPrice, int yearManufactured) {
+		super();
+		this.make = make;
+		this.model = model;
+		this.color = color;
+		this.stickerPrice = stickerPrice;
+		this.yearManufactured = yearManufactured;
+	}
+	
 	public Car(int car_id, String make, String model, String color, double stickerPrice, int yearManufactured) {
 		super();
 		this.car_id = car_id;
@@ -18,7 +27,6 @@ public class Car {
 		this.stickerPrice = stickerPrice;
 		this.yearManufactured = yearManufactured;
 	}
-	
 	
 
 	public int getCar_id() {
