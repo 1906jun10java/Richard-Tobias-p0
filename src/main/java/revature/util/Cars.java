@@ -11,7 +11,12 @@ public class Cars {
 	public static List<Car> carList = new ArrayList<Car>();
 
 	public static void addToLot(Car c) {
-		
+		try {
+			cdi.createCar(c.getYearManufactured(), c.getMake(), c.getModel(), c.getColor(), c.getStickerPrice());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void changeOwner(Car c, User u) {

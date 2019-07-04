@@ -45,6 +45,14 @@ public class CarDAOImp implements CarDAO {
 		//Refreshes the car list to reflect changes
 		getCarList();
 	}
+	
+	/*public void RemoveCar(Car c) throws SQLException {
+		Connection conn = cf.getConnection();
+		String sql = "DELETE FROM CAR WHERE CAR_ID = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, c.getId());
+		stmt.executeUpdate();
+	}*/
 
 	
 }

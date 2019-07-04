@@ -1,6 +1,7 @@
 package com.revature.carappbeans;
 
 public class Offer {
+
 	
 	private int user_id;
 	private int car_id;
@@ -54,6 +55,9 @@ public class Offer {
 	}
 
 	public void setAccepted(int accepted) {
+
+
+	
 		this.accepted = accepted;
 	}
 
@@ -61,8 +65,55 @@ public class Offer {
 	public String toString() {
 		return "Offers [user_id=" + user_id + ", car_id=" + car_id + ", current_offer=" + current_offer
 				+ ", offer_date=" + offer_date + ", accepted=" + accepted + "]";
+
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (accepted ? 1231 : 1237);
+		long temp;
+		temp = Double.doubleToLongBits(amount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((car == null) ? 0 : car.hashCode());
+		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
+		result = prime * result + ((employee == null) ? 0 : employee.hashCode());
+		return result;
 	}
-	
-	
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Offer other = (Offer) obj;
+		if (accepted != other.accepted)
+			return false;
+		if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
+			return false;
+		if (car == null) {
+			if (other.car != null)
+				return false;
+		} else if (!car.equals(other.car))
+			return false;
+		if (customer == null) {
+			if (other.customer != null)
+				return false;
+		} else if (!customer.equals(other.customer))
+			return false;
+		if (employee == null) {
+			if (other.employee != null)
+				return false;
+		} else if (!employee.equals(other.employee))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Offer [customer=" + customer + ", employee=" + employee + ", car=" + car + ", amount=" + amount
+				+ ", accepted=" + accepted + "]";
+
+	}
 }

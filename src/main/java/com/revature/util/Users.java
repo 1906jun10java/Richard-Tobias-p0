@@ -10,5 +10,6 @@ public interface Users {
 	public static List<User> userList = new ArrayList<User>();
 
 	User login(boolean loggedIn);
+
 	void logout();
 }

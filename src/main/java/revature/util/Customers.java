@@ -3,14 +3,25 @@ package revature.util;
 import com.revature.carappbeans.Car;
 import com.revature.carappbeans.User;
 
+
 public class Customers {
+	
+	static CarDAOImp cdi = new CarDAOImp();
+	
 
 	public static double makeOffer(double offer, Car c) {
 		return 0.0;
 	}
 	
-	public static Car[] viewMyCars(User u) {
-		return null;
+	public static List<Car> viewMyCars(User u) {
+		List<Car> carList = new ArrayList<>();
+		try {carList = cdi.getCarList();}
+		catch(Exception e) {
+		
+		}
+		for (Car c : carList) {
+			if 
+		}
 	}
 	
 	public static double[] viewMyPayments(User u) {

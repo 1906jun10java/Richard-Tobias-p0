@@ -27,11 +27,11 @@ public class Scanners {
 				} else {
 					Log.error("No matching username in database");
 					System.out.println("The username entered does not match an existing username. Please try again.");
+
 				}
 			}
 		}
 		return getPasswrd(sc, u);
-
 	}
 
 	public static boolean getPasswrd(Scanner sc, User u) {
@@ -51,13 +51,12 @@ public class Scanners {
 		}
 		return false;
 	}
-
+  
 	public static double getMoneyValue(Scanner sc) {
 		boolean con = true;
 		double amount = 0.0;
 		while (con) {
-
-			System.out.println("Please enter the money value desired ($.¢¢): ");
+			System.out.println("Please enter the money value desired ($.Â¢Â¢): ");
 			try {
 				amount = sc.nextDouble();
 				con = false;
@@ -131,7 +130,7 @@ public class Scanners {
 			try {sticker = sc.nextDouble(); con = false;}
 			catch(InputMismatchException e) {
 				Log.error("A double value was not entered");
-				System.out.println("Please enter a valid monetary value ($.��)");
+				System.out.println("Please enter a valid monetary value ($.¢¢)");
 				sc.next();
 			}
 		}
@@ -225,3 +224,4 @@ public class Scanners {
 		}
 	}
 }
+
