@@ -6,13 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.revature.carappbeans.Car;
 import com.revature.carappbeans.Offer;
 import com.revature.connections.ConnFactory;
 import com.revature.dao.OffersDAO;
-
-import revature.util.Cars;
-import revature.util.Offers;
+import com.revature.util.Offers;
 
 public class OffersDAOImp implements OffersDAO{
 

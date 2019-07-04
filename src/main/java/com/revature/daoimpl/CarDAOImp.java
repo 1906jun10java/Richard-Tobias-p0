@@ -9,8 +9,7 @@ import java.util.List;
 import com.revature.carappbeans.Car;
 import com.revature.connections.ConnFactory;
 import com.revature.dao.CarDAO;
-
-import revature.util.Cars;
+import com.revature.util.Cars;
 
 public class CarDAOImp implements CarDAO {
 

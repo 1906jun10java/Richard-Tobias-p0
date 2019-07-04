@@ -4,15 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.carappbeans.User;
 import com.revature.connections.ConnFactory;
 import com.revature.dao.UserDAO;
-
-import revature.util.Users;
+import com.revature.util.Users;
 
 public class UserDAOImp implements UserDAO {
 

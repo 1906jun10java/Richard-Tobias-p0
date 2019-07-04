@@ -6,8 +6,7 @@ import java.util.Scanner;
 import org.junit.Test;
 
 import com.revature.carappbeans.User;
-
-import revature.util.Scanners;
+import com.revature.util.Scanners;
 
 public class ScannerTests {
 
