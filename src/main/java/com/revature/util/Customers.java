@@ -3,11 +3,10 @@ package com.revature.util;
 import com.revature.carappbeans.Car;
 import com.revature.carappbeans.User;
 
-public class Customers implements Users {
+public class Customers {
 
-	public static double makeOffer(double offer) {
-		double currentOffer = offer;
-		return currentOffer;
+	public static double makeOffer(double offer, Car c) {
+		return 0.0;
 	}
 	
 	public static Car[] viewMyCars(User u) {
@@ -18,8 +17,7 @@ public class Customers implements Users {
 		return null;
 	}
 	
-	public User login(String username, String passwrd) {
-		
+	public static User login(boolean loggedIn) {
 		return null;
 	}
 	

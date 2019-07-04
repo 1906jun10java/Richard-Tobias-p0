@@ -8,8 +8,7 @@ import java.util.List;
 
 import com.revature.carappbeans.Invoice;
 import com.revature.connections.ConnFactory;
-
-import revature.util.Invoices;
+import com.revature.util.Invoices;
 
 public class InvoiceDAOImp {
 

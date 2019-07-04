@@ -1,11 +1,17 @@
 package com.revature.util;
 
-import com.revature.carappbeans.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class Employees implements Users {
+import com.revature.Driver;
 
-	public static void acceptOffer() {
+public class Employees {
+	
+	static Logger Log = LogManager.getLogger(Driver.class);
+
+	public static boolean acceptOffer() {
 		
+		return false;
 	}
 	
 	public static void rejectOffer() {
@@ -16,8 +22,13 @@ public class Employees implements Users {
 		return null;
 	}
 	
-	public User login(String username, String passwrd) {
-		return null;
+	public static void login(boolean loggedIn) {
+		if(loggedIn) {
+			Scanners.employeeMenu();
+		} else {
+			Log.error("Invalid login credentials");
+			System.out.println("Invalid login");
+		}
 	}
 	
 	public void logout() {

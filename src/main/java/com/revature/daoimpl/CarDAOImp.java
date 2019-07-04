@@ -9,8 +9,7 @@ import java.util.List;
 import com.revature.carappbeans.Car;
 import com.revature.connections.ConnFactory;
 import com.revature.dao.CarDAO;
-
-import revature.util.Cars;
+import com.revature.util.Cars;
 
 public class CarDAOImp implements CarDAO {
 
@@ -32,17 +31,16 @@ public class CarDAOImp implements CarDAO {
 	}
 
 	
-	public void createCar(int car_id, String make, String model, String color, double stickerPrice, int yearManufactured)
+	public void createCar(String make, String model, String color, double stickerPrice, int yearManufactured)
 			throws SQLException {
 		Connection conn = cf.getConnection();
 		String sql = "INSERT INTO CAR VALUES(USERSEQ.NEXTVAL,?,?,?,?,?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setInt(1, car_id);
-		ps.setString(2, make);
-		ps.setString(3, model);
-		ps.setString(4, color);
-		ps.setDouble(5, stickerPrice);
-		ps.setInt(6, yearManufactured);
+		ps.setString(1, make);
+		ps.setString(2, model);
+		ps.setString(3, color);
+		ps.setDouble(4, stickerPrice);
+		ps.setInt(5, yearManufactured);
 		ps.executeUpdate();
 		//Refreshes the car list to reflect changes
 		getCarList();
