@@ -2,18 +2,31 @@ package com.revature.carappbeans;
 
 public class User {
 
-	public User(String userName, String passwrd, String name) {
+	public User() {
+	}
+
+	public User(String userName, String passwrd, String name, int userID) {
 		super();
 		this.userName = userName;
 		this.passwrd = passwrd;
 		this.name = name;
 		this.access = false;
+		this.userID = userID;
 	}
 
 	private String userName;
 	private String passwrd;
 	private String name;
 	private boolean access;
+	private int userID;
+
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
 
 	public String getUserName() {
 		return userName;
