@@ -7,6 +7,6 @@ import com.revature.carappbeans.User;
 
 public interface UserDAO {
 
-	public abstract void createUser(String username, String password, String name) throws SQLException;
+	public abstract void createUser(String username, String password, String name, int access) throws SQLException;
 	public abstract List<User> getUserList() throws SQLException;
 }

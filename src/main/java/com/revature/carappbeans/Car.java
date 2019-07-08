@@ -28,6 +28,10 @@ public class Car {
 		this.yearManufactured = yearManufactured;
 	}
 	
+	public Car() {
+		super();
+	}
+	
 
 	public int getCar_id() {
 		return car_id;

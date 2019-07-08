@@ -8,12 +8,10 @@ public class Invoice {
 	private String sell_date;
 	private double amount_owed;
 	
-	public Invoice(int invoice_id, int user_id, int car_id, String sell_date, double amount_owed) {
+	public Invoice(int user_id, int car_id, double amount_owed) {
 		super();
-		this.invoice_id = invoice_id;
 		this.user_id = user_id;
 		this.car_id = car_id;
-		this.sell_date = sell_date;
 		this.amount_owed = amount_owed;
 	}
 

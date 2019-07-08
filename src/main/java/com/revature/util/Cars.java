@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.carappbeans.Car;
+import com.revature.daoimpl.CarDAOImp;
 
 
 public class Cars {
@@ -12,9 +13,9 @@ public class Cars {
 
 	public static void displayCurrentLot(){
 		boolean[] checker = new boolean[Invoices.invoiceList.size()];
-		for(int i = 0; i < Cars.carList.size(); i++) {
+		for(int i = 0; i < CarDAOImp.carList.size(); i++) {
 			for(int j = 0; j <Invoices.invoiceList.size(); j++) {
-				if(Cars.carList.get(i).getCar_id() == Invoices.invoiceList.get(j).getCar_id()) {
+				if(CarDAOImp.carList.get(i).getCar_id() == Invoices.invoiceList.get(j).getCar_id()) {
 					checker[j] = false;
 					break;
 				}else {
@@ -31,7 +32,7 @@ public class Cars {
 			if(exists > 0) {
 				continue;
 			}else {
-				System.out.println(Cars.carList.get(i));
+				System.out.println(CarDAOImp.carList.get(i));
 			}
 		}
 		

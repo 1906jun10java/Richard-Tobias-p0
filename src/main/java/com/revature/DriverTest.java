@@ -1,52 +1,47 @@
 package com.revature;
-
 import java.sql.SQLException;
-import java.util.Scanner;
 
-import com.revature.carappbeans.User;
-import com.revature.daoimpl.CarDAOImp;
-import com.revature.daoimpl.InvoiceDAOImp;
-import com.revature.daoimpl.OffersDAOImp;
-import com.revature.daoimpl.UserDAOImp;
-import com.revature.util.Scanners;
+import com.revature.daoimpl.*;
 
-public class Driver {
-	
+public class DriverTest {
+	static CarDAOImp cdao = new CarDAOImp();
 	static {
-		CarDAOImp cdao = new CarDAOImp();
+		
 		try {
 			cdao.getCarList();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Throwing Exception for Cars DAO");
 			e.printStackTrace();
 		}
 		InvoiceDAOImp idao = new InvoiceDAOImp();
 		try {
 			idao.getInvoiceList();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Throwing Exception for Invoice DAO");
 			e.printStackTrace();
 		}
 		OffersDAOImp odao = new OffersDAOImp();
 		try {
 			odao.getAllOffers();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Throwing Exception for Offers DAO");
 			e.printStackTrace();
 		}
 		UserDAOImp udao = new UserDAOImp();
 		try {
 			udao.getUserList();
 		} catch (SQLException e) {
+			System.out.println("Throwing Exception for Users DAO");
+			e.printStackTrace();
+		}
+	}
+	public static void main(String[] args) {
+		try {
+			OffersDAOImp.makeOffer(8, 25000, 2);
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-	}
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		Scanners.mainMenu(sc);
-		sc.close();
-		
+		//CarDAOImp.getAllPayments();
 	}
 }
