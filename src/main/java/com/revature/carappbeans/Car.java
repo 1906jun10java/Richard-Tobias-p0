@@ -64,6 +64,7 @@ public class Car {
 		this.model = model;
 	}
 
+
 	public String getColor() {
 		return color;
 	}
@@ -94,6 +95,7 @@ public class Car {
 		result = prime * result + yearManufactured;
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -133,5 +135,6 @@ public class Car {
 		return "Car [car_id=" + car_id + ", make=" + make + ", model=" + model + ", color=" + color + ", stickerPrice="
 				+ stickerPrice + ", yearManufactured=" + yearManufactured + "]";
 	}
+
 
 }

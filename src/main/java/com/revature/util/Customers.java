@@ -2,27 +2,27 @@ package com.revature.util;
 
 import java.sql.SQLException;
 
+import com.revature.carappbeans.Car;
+
 import com.revature.carappbeans.User;
 import com.revature.daoimpl.CarDAOImp;
 
 public class Customers {
 
     
-    public static void viewMyCars(User u) {
-        try {
-        	CarDAOImp.getOwnedList(u.getUserID());
+    public static Car[] viewMyCars(User u) {
+    	try {
+			CarDAOImp.getOwnedList(u.getUserID());
 		} catch (SQLException e) {
-			Scanners.Log.error("Could not successfuly retrieve users cars");
+			// TODO Auto-generated catch block
+			Scanners.Log.error("SQL Exception was thrown by ViewMyCars method");
 		}
-        
+        return null;
     }
     
-    public static void viewMyPayments(User u) {
-    	try {
-			Scanners.idao.getMyInvoices(u.getUserID());
-		} catch (SQLException e) {
-			Scanners.Log.error("That aint right");
-		}
+    public static double[] viewMyPayments(User u) {
+        return null;
+
     }
     
     public static void addNewAccount() {

@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import com.revature.daoimpl.*;
 
 public class DriverTest {
+	static CarDAOImp cdao = new CarDAOImp();
 	static {
-		CarDAOImp cdao = new CarDAOImp();
 		try {
 			cdao.getCarList();
 		} catch (SQLException e) {
@@ -36,7 +36,9 @@ public class DriverTest {
 	}
 	public static void main(String[] args) {
 		try {
+
 			CarDAOImp.getAllOwnedList();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

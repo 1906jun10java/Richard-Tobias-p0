@@ -1,25 +1,29 @@
 package com.revature.util;
 
-import java.sql.SQLException;
 
-import com.revature.daoimpl.CarDAOImp;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class Employees { 
+import com.revature.Driver;
+
+public class Employees {
+    
+    static Logger Log = LogManager.getLogger(Driver.class);
     
     
-    public static void viewAllPayments() {
-        try {
-			CarDAOImp.getAllPayments();
-		} catch (SQLException e) {
-			Scanners.Log.error("Trouble getting all user payments");
-		}
+    
+    public static double[] viewAllPayments() {
+        
+        return null;
+
     }
     
     public static void login(boolean loggedIn) {
         if(loggedIn) {
             Scanners.employeeMenu(Scanners.sc);
         } else {
-            Scanners.Log.error("Invalid login credentials");
+
+            Log.error("Invalid login credentials");
             System.out.println("Invalid login");
         }
     }

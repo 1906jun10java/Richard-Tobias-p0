@@ -50,8 +50,11 @@ public class OffersDAOImp implements OffersDAO{
 		String sql1 = "SELECT * FROM OFFERS WHERE USER_ID = " + user_id + " AND CAR_ID = " + car_id;
 		PreparedStatement stmt = conn.prepareStatement(sql1);
 		ResultSet rs = stmt.executeQuery();
-		if (rs.first() == false) {
-			String sql2 = "INSERT INTO OFFERS VALUES(OFFERSEQ.NEXTVAL,?,?,?)";
+
+		//if (rs.isFirst() == false) {
+			System.out.println("Attempting to create new offer.");
+			String sql2 = "INSERT INTO OFFERS VALUES(?,?,?,NULL)";
+
 			PreparedStatement ps1 = conn.prepareStatement(sql2);
 			ps1.setInt(1, user_id);
 			ps1.setInt(2, car_id);
@@ -59,7 +62,9 @@ public class OffersDAOImp implements OffersDAO{
 			ps1.executeUpdate();
 			System.out.println("Successfuly added new offer for Car ID: " + car_id);
 			return true;
-		}else {
+    
+		/*}else {
+
 			String sql3 = "UPDATE OFFERS SET CURRENT_OFFER = ? WHERE USER_ID = ? AND CAR_ID = ?";
 			PreparedStatement ps2 = conn.prepareStatement(sql3);
 			ps2.setDouble(1, offer);
@@ -68,7 +73,9 @@ public class OffersDAOImp implements OffersDAO{
 			ps2.executeUpdate();
 			System.out.println("Successfuly updated current offer for Car ID: " + car_id);
 			return true;
-		}
+
+		}*/
+
 	}
 	
 	public static boolean acceptOffer(int user_id, int car_id) throws SQLException{
