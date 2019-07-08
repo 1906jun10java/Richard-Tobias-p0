@@ -3,12 +3,15 @@ package com.revature.util;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import com.revature.Driver;
 import com.revature.carappbeans.Car;
 import com.revature.carappbeans.User;
 import com.revature.daoimpl.CarDAOImp;
+import com.revature.daoimpl.InvoiceDAOImp;
 import com.revature.daoimpl.OffersDAOImp;
 import com.revature.daoimpl.UserDAOImp;
 
@@ -16,9 +19,10 @@ public class Scanners {
 
 	static Logger Log = LogManager.getLogger(Driver.class);
 	static UserDAOImp udao = new UserDAOImp();
-	static CarDAOImp cdao = new CarDAOImp();
+	public static CarDAOImp cdao = new CarDAOImp();
 	public static Scanner sc = new Scanner(System.in);
 	static OffersDAOImp odao = new OffersDAOImp();
+	public static InvoiceDAOImp idao = new InvoiceDAOImp();
 	static User u = new User();
 
 	public static boolean getUsername(Scanner sc) {
@@ -43,15 +47,16 @@ public class Scanners {
 		return getPasswrd(sc, u);
 	}
 
-	public static boolean getPasswrd(Scanner sc, User u) {
+	public static boolean getPasswrd(Scanner sc, User u2) {
 		boolean con = true;
 		System.out.println("Please enter your password: ");
 		while (con) {
 			String attempt = sc.next();
-			if (u.getPasswrd().equals(null)) {
+			if (u2.getPasswrd().equals(null)) {
 				System.out.println("This user has no password! Please register a new account");
 				return false;
-			} else if (attempt.equals(u.getPasswrd())) {
+			} else if (attempt.equals(u2.getPasswrd())) {
+				u = u2;
 				return true;
 			} else {
 				Log.error("Password entered does not match the expected password.");
@@ -102,8 +107,9 @@ public class Scanners {
 			} catch (Exception e) {
 				Log.error("Invalid Input");
 				System.out.println("Invalid input, please try again");
-				// sc.next();
+				
 			}
+			sc.nextLine();
 		}
 		System.out.println("What model is the car?");
 		String model = "";
@@ -211,7 +217,7 @@ public class Scanners {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("User account created successfully! Please log in to view user functions!)");
+		System.out.println("User account created successfully! Please log in to view user functions!");
 	}
 
 	public static void mainMenu(Scanner sc) {
@@ -223,6 +229,7 @@ public class Scanners {
 		while (con2) {
 			System.out
 					.println("1. Login \n" + "2. View Cars in Lot \n" + "3. Create New Account \n" + "4. Exit Program");
+			con = true;
 			while (con) {
 				try {
 					choice = sc.nextInt();
@@ -243,12 +250,18 @@ public class Scanners {
 				switch (choice) {
 				case 1:
 					Customers.login(getUsername(sc));
+					sc.nextLine();
+					con = false;
 					break;
 				case 2:
 					CarDAOImp.displayCurrentLot();
+					sc.nextLine();
+					con = false;
 					break;
 				case 3:
 					Customers.addNewAccount();
+					sc.nextLine();
+					con = false;
 					break;
 				case 4:
 					con = false;
@@ -256,6 +269,8 @@ public class Scanners {
 					break;
 				case 0:
 					Employees.login(getUsername(sc));
+					sc.nextLine();
+					con = false;
 					break;
 				default:
 					Log.info("The switch case reached it's default case. Invalid user input");
@@ -291,28 +306,32 @@ public class Scanners {
 						cdao.createCar(c.getMake(), c.getModel(), c.getColor(), c.getStickerPrice(),
 								c.getYearManufactured());
 						sc.next();
+						System.out.println("Car created successfully");
+						//Refreshes the car list to reflect changes
+						cdao.carList = cdao.getCarList();
 					} catch (SQLException e1) {
 						Log.error("Error utilizing the SQL database");
 					}
 					break;
 				case 2:
-					// odao.removeCarFromLot(c);
-					sc.next();
+					try {
+						CarDAOImp.deleteCar(selectCar2(sc).getCar_id());
+					} catch (SQLException e1) {
+						Log.error("SQL errors happen");
+					}
+					sc.nextLine();
 					break;
 				case 3:
 					Employees.viewAllPayments();
-					sc.next();
+					sc.nextLine();
 					break;
 				case 4:
-					try {
-						odao.getAllOffers();
-						sc.next();
-					} catch (SQLException e) {
-						Log.error("Error utilizing the SQL database");
-					}
+						System.out.println(OffersDAOImp.offerList);
+						sc.nextLine();
 					break;
 				case 5:
 					con2 = false;
+					con = false;
 					break;
 				default:
 					System.out.println("Invalid User Input, returning to previous menu");
@@ -324,60 +343,63 @@ public class Scanners {
 	}
 
 	public static void customerMenu(Scanner sc) {
-        int choice = 0;
-        boolean con = true;
-        boolean con2 = true;
-        System.out.println("Welcome customer, please select what you would like to do!");
-        while (con2) {
-            System.out.println("1. View my cars \n" + "2. View remaining payments \n"
-                    + "3. Make an offer on a car in the lot\n " + "4. Log Out");
-            while (con) {
-                try {
-                    choice = sc.nextInt();
-                    con = false;
-                } catch (InputMismatchException e) {
-                    Log.info("Invalid choice");
-                    System.out.println("Invalid choice, please select a number corresponding to an option");
-                    System.out.println("1. View my cars \n" + "2. View remaining payments \n"
-                            + "3. Make an offer on a car in the lot\n " + "4. Log Out");
-                }
-            }
-            switch (choice) {
-            case 1:
-                Customers.viewMyCars(new User());
-                sc.next();
-                break;
-            case 2:
-                Customers.viewMyPayments(new User());
-                sc.next();
-                break;
-            case 3:
-                try {
-					OffersDAOImp.makeOffer(getMoneyValue(sc), selectCar(sc).getCar_id(), u.getUserID());
-				} catch (SQLException e) {
-					Log.error("SQL communication borked");
+		int choice = 0;
+		boolean con = true;
+		boolean con2 = true;
+		System.out.println("Welcome customer, please select what you would like to do!");
+		while (con2) {
+			System.out.println("1. View my cars \n" + "2. View remaining payments \n"
+					+ "3. Make an offer on a car in the lot\n " + "4. Log Out");
+			con = true;
+			while (con) {
+				try {
+					choice = sc.nextInt();
+					con = false;
+				} catch (InputMismatchException e) {
+					Log.info("Invalid choice");
+					System.out.println("Invalid choice, please select a number corresponding to an option");
+					System.out.println("1. View my cars \n" + "2. View remaining payments \n"
+							+ "3. Make an offer on a car in the lot\n " + "4. Log Out");
 				}
-                sc.next();
-                break;
-            case 4:
-                con2 = false;
-                break;
-            default:
-                System.out.println("Invalid selection. please try again");
-                break;
-            }
-        }
-    }
+				switch (choice) {
+				case 1:
+					Customers.viewMyCars(u);
+					sc.nextLine();
+					con = false;
+					break;
+				case 2:
+					Customers.viewMyPayments(u);
+					sc.nextLine();
+					con = false;
+					break;
+				case 3:
+					try {
+						OffersDAOImp.makeOffer(selectCar(sc).getCar_id(), getMoneyValue(sc), u.getUserID());
+					} catch (SQLException e) {
+						Log.error("SQL communication borked");
+					}
+					sc.nextLine();
+					con = false;
+					break;
+				case 4:
+					con = false;
+					con2 = false;
+					break;
+				default:
+					System.out.println("Invalid selection. please try again");
+					con = false;
+					break;
+				}
+			}
+			
+		}
+	}
 
 	public static Car selectCar(Scanner sc) {
-		int num = 1;
 		boolean con = true;
 		int attempt = -1;
-		for (Car c : CarDAOImp.carList) {
-			System.out.println(num + c.toString());
-			num += 1;
-		}
-		System.out.println("Please select the car you would like to work with");
+		System.out.println("Please select the car you would like to make an offer on");
+		CarDAOImp.displayCurrentLot();
 		while (con) {
 			try {
 				attempt = sc.nextInt();
@@ -386,7 +408,24 @@ public class Scanners {
 				Log.info("Invalid entry from user");
 			}
 		}
-		Car c = CarDAOImp.carList.get(attempt - 1);
+		Car c = CarDAOImp.currentLot.get(attempt - 1);
+		return c;
+	}
+	
+	public static Car selectCar2(Scanner sc) {
+		boolean con = true;
+		int attempt = 0;
+		System.out.println("Please select the car you would like to remove from the lot");
+		CarDAOImp.displayCurrentLot();
+		while (con) {
+			try {
+				attempt = sc.nextInt();
+				con = false;
+			} catch (InputMismatchException e) {
+				Log.info("Invalid entry from user");
+			}
+		}
+		Car c = CarDAOImp.currentLot.get(attempt - 1);
 		return c;
 	}
 }

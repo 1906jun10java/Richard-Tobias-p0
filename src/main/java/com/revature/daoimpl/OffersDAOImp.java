@@ -45,7 +45,7 @@ public class OffersDAOImp implements OffersDAO{
 		return offerList;
 	}
 	
-	public static boolean makeOffer(double offer, int car_id, int user_id) throws SQLException{
+	public static boolean makeOffer(int car_id, double offer, int user_id) throws SQLException{
 		Connection conn = cf.getConnection();
 		String sql1 = "SELECT * FROM OFFERS WHERE USER_ID = " + user_id + " AND CAR_ID = " + car_id;
 		PreparedStatement stmt = conn.prepareStatement(sql1);
