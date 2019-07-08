@@ -31,7 +31,9 @@ public class UserDAOImp implements UserDAO {
 
 	public List<User> getUserList() throws SQLException {
 		Connection conn = cf.getConnection();
+
 		String sql = "SELECT USER_ID, USER_NAME, USERNAME, PASS FROM SYSTEM_USERS";
+
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
 		User u = null;

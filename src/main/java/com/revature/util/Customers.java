@@ -3,12 +3,12 @@ package com.revature.util;
 import java.sql.SQLException;
 
 import com.revature.carappbeans.Car;
+
 import com.revature.carappbeans.User;
 import com.revature.daoimpl.CarDAOImp;
 
 public class Customers {
 
-    
     
     public static Car[] viewMyCars(User u) {
     	try {
@@ -22,6 +22,7 @@ public class Customers {
     
     public static double[] viewMyPayments(User u) {
         return null;
+
     }
     
     public static void addNewAccount() {

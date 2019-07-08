@@ -3,11 +3,13 @@ package scanners;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Scanner;
+
 import org.junit.Test;
 
 import com.revature.carappbeans.User;
 import com.revature.util.Scanners;
 import com.revature.util.Users;
+
 
 public class ScannerTests {
 
@@ -16,7 +18,9 @@ public class ScannerTests {
 	@Test
 	public void properPasswordAndUsernameGiveTrue() {
 		boolean ans = true;
-		Users.userList.add(new User ("username", "password", "name"));
+
+		UserDAOImp.userList.add(new User ("username", "password", "name", 0));
+
 		assertEquals(ans, Scanners.getUsername(sc));
 		sc.close();
 	}

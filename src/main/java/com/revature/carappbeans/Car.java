@@ -17,7 +17,7 @@ public class Car {
 		this.stickerPrice = stickerPrice;
 		this.yearManufactured = yearManufactured;
 	}
-	
+
 	public Car(int car_id, String make, String model, String color, double stickerPrice, int yearManufactured) {
 		super();
 		this.car_id = car_id;
@@ -27,11 +27,10 @@ public class Car {
 		this.stickerPrice = stickerPrice;
 		this.yearManufactured = yearManufactured;
 	}
-	
+
 	public Car() {
-		super();
+
 	}
-	
 
 	public int getCar_id() {
 		return car_id;
@@ -82,8 +81,6 @@ public class Car {
 		this.stickerPrice = stickerPrice;
 	}
 
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -98,7 +95,6 @@ public class Car {
 		result = prime * result + yearManufactured;
 		return result;
 	}
-
 
 
 	@Override
@@ -134,14 +130,11 @@ public class Car {
 		return true;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Car [car_id=" + car_id + ", make=" + make + ", model=" + model + ", color=" + color + ", stickerPrice="
 				+ stickerPrice + ", yearManufactured=" + yearManufactured + "]";
 	}
-	
-	
+
 
 }

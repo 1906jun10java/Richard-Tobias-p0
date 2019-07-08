@@ -9,9 +9,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 import com.revature.carappbeans.Car;
 import com.revature.connections.ConnFactory;
 import com.revature.dao.CarDAO;
+import com.revature.util.Scanners;
+
 
 public class CarDAOImp implements CarDAO {
 
@@ -20,10 +23,12 @@ public class CarDAOImp implements CarDAO {
 	public static List<Car> carList = new ArrayList<Car>();
 	public static List<Car> currentLot = new ArrayList<Car>();
 	public static List<Car> ownedList = new ArrayList<Car>();
+
 	public static Set<Car> newCurrentLot = new HashSet<Car>();
 	public static ConnFactory cf = ConnFactory.getInstance();
 	static CarDAOImp cd = new CarDAOImp();
 	static InvoiceDAOImp id = new InvoiceDAOImp();
+
 
 	//pulls the current car table into the program
 	public List<Car> getCarList() throws SQLException {
@@ -44,7 +49,9 @@ public class CarDAOImp implements CarDAO {
 	public void createCar(String make, String model, String color, double stickerPrice, int yearManufactured)
 			throws SQLException {
 		Connection conn = cf.getConnection();
-		String sql = "INSERT INTO CAR VALUES(USERSEQ.NEXTVAL,?,?,?,?,?)";
+
+		String sql = "INSERT INTO CAR VALUES(CARSEQ.NEXTVAL,?,?,?,?,?)";
+
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, make); 
 		ps.setString(2, model); 
@@ -52,6 +59,7 @@ public class CarDAOImp implements CarDAO {
 		ps.setDouble(4, stickerPrice); 
 		ps.setInt(5, yearManufactured);
 		ps.executeUpdate();
+
 		//Refreshes the car list to reflect changes
 		getCarList();
 	}
@@ -167,6 +175,7 @@ public class CarDAOImp implements CarDAO {
 		
 		return ownedList;
 	}
+
 	
 	public static void getAllPayments() throws SQLException {
 		Connection conn = cf.getConnection();
@@ -179,6 +188,6 @@ public class CarDAOImp implements CarDAO {
 			//System.out.println(rs.getInt(2));
 		}
 	}
-	
+
 	
 }

@@ -19,10 +19,12 @@ public class Scanners {
 
 	static Logger Log = LogManager.getLogger(Driver.class);
 	static UserDAOImp udao = new UserDAOImp();
+
 	static CarDAOImp cdao = new CarDAOImp();
 	public static Scanner sc = new Scanner(System.in);
 	static OffersDAOImp odao = new OffersDAOImp();
 	static InvoiceDAOImp idao = new InvoiceDAOImp();
+
 	static User u = new User();
 
 	public static boolean getUsername(Scanner sc) {
@@ -70,13 +72,13 @@ public class Scanners {
 		boolean con = true;
 		double amount = 0.0;
 		while (con) {
-			System.out.println("Please enter the money value desired ($.¢¢): ");
+			System.out.println("Please enter the money value desired ($.Â¢Â¢): ");
 			try {
 				amount = sc.nextDouble();
 				con = false;
 			} catch (InputMismatchException e) {
 				Log.error("Data entry was not a numeric value.");
-				System.out.println("Please enter a valid money value ($.¢¢): ");
+				System.out.println("Please enter a valid money value ($.Â¢Â¢): ");
 				sc.next();
 			}
 		}
@@ -107,8 +109,11 @@ public class Scanners {
 			} catch (Exception e) {
 				Log.error("Invalid Input");
 				System.out.println("Invalid input, please try again");
-				// sc.next();
+
+				
 			}
+			sc.nextLine();
+
 		}
 		System.out.println("What model is the car?");
 		String model = "";
@@ -145,7 +150,7 @@ public class Scanners {
 				con = false;
 			} catch (InputMismatchException e) {
 				Log.error("A double value was not entered");
-				System.out.println("Please enter a valid monetary value ($.¢¢)");
+				System.out.println("Please enter a valid monetary value ($.Â¢Â¢)");
 				sc.next();
 			}
 		}
@@ -305,12 +310,23 @@ public class Scanners {
 						cdao.createCar(c.getMake(), c.getModel(), c.getColor(), c.getStickerPrice(),
 								c.getYearManufactured());
 						sc.next();
+
+						System.out.println("Car created successfully");
+						//Refreshes the car list to reflect changes
+						cdao.carList = cdao.getCarList();
+
 					} catch (SQLException e1) {
 						Log.error("Error utilizing the SQL database");
 					}
 					break;
 				case 2:
-					// odao.removeCarFromLot(c);
+
+					try {
+						CarDAOImp.deleteCar(selectCar2(sc).getCar_id());
+					} catch (SQLException e1) {
+						Log.error("SQL errors happen");
+					}
+
 					sc.nextLine();
 					break;
 				case 3:
@@ -318,12 +334,17 @@ public class Scanners {
 					sc.nextLine();
 					break;
 				case 4:
+
 					try {
 						odao.getAllOffers();
 						sc.nextLine();
 					} catch (SQLException e) {
 						Log.error("Error utilizing the SQL database");
 					}
+
+						System.out.println(OffersDAOImp.offerList);
+						sc.nextLine();
+
 					break;
 				case 5:
 					con2 = false;
@@ -392,7 +413,9 @@ public class Scanners {
 	}
 
 	public static Car selectCar(Scanner sc) {
+
 		int num = 1;
+
 		boolean con = true;
 		int attempt = -1;
 		System.out.println("Please select the car you would like to make an offer on");
@@ -408,4 +431,23 @@ public class Scanners {
 		Car c = CarDAOImp.currentLot.get(attempt - 1);
 		return c;
 	}
+
+	
+	public static Car selectCar2(Scanner sc) {
+		boolean con = true;
+		int attempt = 0;
+		System.out.println("Please select the car you would like to remove from the lot");
+		CarDAOImp.displayCurrentLot();
+		while (con) {
+			try {
+				attempt = sc.nextInt();
+				con = false;
+			} catch (InputMismatchException e) {
+				Log.info("Invalid entry from user");
+			}
+		}
+		Car c = CarDAOImp.currentLot.get(attempt - 1);
+		return c;
+	}
+
 }

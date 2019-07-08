@@ -6,7 +6,6 @@ import com.revature.daoimpl.*;
 public class DriverTest {
 	static CarDAOImp cdao = new CarDAOImp();
 	static {
-		
 		try {
 			cdao.getCarList();
 		} catch (SQLException e) {
@@ -37,7 +36,9 @@ public class DriverTest {
 	}
 	public static void main(String[] args) {
 		try {
-			OffersDAOImp.makeOffer(8, 25000, 2);
+
+			CarDAOImp.getAllOwnedList();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
