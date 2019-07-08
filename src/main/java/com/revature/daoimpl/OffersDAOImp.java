@@ -116,14 +116,14 @@ public class OffersDAOImp implements OffersDAO {
 		ps2.setInt(1, user_id);
 		ps2.setInt(2, car_id);
 		ps2.executeUpdate();
-		// System.out.println("Successfuly deleted offer for Car ID: " + car_id + " &
+		// System.out.println("Successfully deleted offer for Car ID: " + car_id + " &
 		// User ID: " + user_id);
 		return true;
 	}
 
 	public static boolean deleteOtherOffers(int car_id) throws SQLException {
 		Connection conn = cf.getConnection();
-		String sql3 = "DELETE * FROM OFFERS WHERE CAR_ID = ?";
+		String sql3 = "DELETE FROM OFFERS WHERE CAR_ID = ?";
 		PreparedStatement ps2 = conn.prepareStatement(sql3);
 		ps2.setInt(1, car_id);
 		ps2.executeUpdate();
