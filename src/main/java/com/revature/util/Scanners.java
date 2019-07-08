@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.revature.Driver;
 import com.revature.carappbeans.Car;
+import com.revature.carappbeans.Offer;
 import com.revature.carappbeans.User;
 import com.revature.daoimpl.CarDAOImp;
 import com.revature.daoimpl.InvoiceDAOImp;
@@ -21,7 +22,7 @@ public class Scanners {
 	static UserDAOImp udao = new UserDAOImp();
 	public static CarDAOImp cdao = new CarDAOImp();
 	public static Scanner sc = new Scanner(System.in);
-	static OffersDAOImp odao = new OffersDAOImp();
+	public static OffersDAOImp odao = new OffersDAOImp();
 	public static InvoiceDAOImp idao = new InvoiceDAOImp();
 	static User u = new User();
 
@@ -107,7 +108,7 @@ public class Scanners {
 			} catch (Exception e) {
 				Log.error("Invalid Input");
 				System.out.println("Invalid input, please try again");
-				
+
 			}
 			sc.nextLine();
 		}
@@ -254,7 +255,12 @@ public class Scanners {
 					con = false;
 					break;
 				case 2:
-					CarDAOImp.displayCurrentLot();
+					try {
+						CarDAOImp.displayCurrentLot();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					sc.nextLine();
 					con = false;
 					break;
@@ -305,10 +311,10 @@ public class Scanners {
 					try {
 						cdao.createCar(c.getMake(), c.getModel(), c.getColor(), c.getStickerPrice(),
 								c.getYearManufactured());
-						sc.next();
+						sc.nextLine();
 						System.out.println("Car created successfully");
-						//Refreshes the car list to reflect changes
-						cdao.carList = cdao.getCarList();
+						// Refreshes the car list to reflect changes
+						CarDAOImp.carList = cdao.getCarList();
 					} catch (SQLException e1) {
 						Log.error("Error utilizing the SQL database");
 					}
@@ -326,8 +332,14 @@ public class Scanners {
 					sc.nextLine();
 					break;
 				case 4:
-						System.out.println(OffersDAOImp.offerList);
-						sc.nextLine();
+					int index = 1;
+					for (Offer o : OffersDAOImp.offerList) {
+						System.out.println(index + ". " + o.toString());
+						index += 1;
+					}
+					System.out.println("Please select an offer");
+					Offer o = selectOffer(sc);					
+					sc.nextLine();
 					break;
 				case 5:
 					con2 = false;
@@ -373,11 +385,7 @@ public class Scanners {
 					con = false;
 					break;
 				case 3:
-					try {
-						OffersDAOImp.makeOffer(selectCar(sc).getCar_id(), getMoneyValue(sc), u.getUserID());
-					} catch (SQLException e) {
-						Log.error("SQL communication borked");
-					}
+					OffersDAOImp.makeOffer(selectCar(sc).getCar_id(), getMoneyValue(sc), u.getUserID());
 					sc.nextLine();
 					con = false;
 					break;
@@ -391,7 +399,7 @@ public class Scanners {
 					break;
 				}
 			}
-			
+
 		}
 	}
 
@@ -399,7 +407,12 @@ public class Scanners {
 		boolean con = true;
 		int attempt = -1;
 		System.out.println("Please select the car you would like to make an offer on");
-		CarDAOImp.displayCurrentLot();
+		try {
+			CarDAOImp.displayCurrentLot();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		while (con) {
 			try {
 				attempt = sc.nextInt();
@@ -411,12 +424,17 @@ public class Scanners {
 		Car c = CarDAOImp.currentLot.get(attempt - 1);
 		return c;
 	}
-	
+
 	public static Car selectCar2(Scanner sc) {
 		boolean con = true;
 		int attempt = 0;
 		System.out.println("Please select the car you would like to remove from the lot");
-		CarDAOImp.displayCurrentLot();
+		try {
+			CarDAOImp.displayCurrentLot();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		while (con) {
 			try {
 				attempt = sc.nextInt();
@@ -427,5 +445,41 @@ public class Scanners {
 		}
 		Car c = CarDAOImp.currentLot.get(attempt - 1);
 		return c;
+	}
+
+	public static Offer selectOffer(Scanner sc) {
+		boolean con = true;
+		int attempt = 0;
+		while (con) {
+			try {
+				attempt = sc.nextInt();
+				con = false;
+			} catch (InputMismatchException e) {
+				Log.info("Error at keyboard");
+			}
+		}
+		Offer o = OffersDAOImp.offerList.get(attempt - 1);
+		System.out.println("Is this offer accepted or rejected? (A/R)");
+		char select = sc.next().toUpperCase().charAt(0);
+		switch(select) {
+		case 'A': try {
+				OffersDAOImp.acceptOffer(o.getUser_id(), o.getCar_id());
+				OffersDAOImp.deleteOtherOffers(o.getCar_id());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		break;
+		case 'R': try {
+				OffersDAOImp.rejectOffer(o.getUser_id(), o.getCar_id());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		break;
+		default: System.out.println("You didn't want to do anything? okay...");
+		break;
+		}
+		return o;
 	}
 }

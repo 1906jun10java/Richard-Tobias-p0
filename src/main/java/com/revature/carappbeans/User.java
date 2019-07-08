@@ -5,19 +5,19 @@ public class User {
 	public User() {
 	}
 
-	public User(String userName, String passwrd, String name, int userID) {
+	public User(int userID, String userName, String passwrd, String name, int access) {
 		super();
+		this.userID = userID;
 		this.userName = userName;
 		this.passwrd = passwrd;
 		this.name = name;
-		this.access = false;
-		this.userID = userID;
+		this.access = access;
 	}
 
 	private String userName;
 	private String passwrd;
 	private String name;
-	private boolean access;
+	private int access;
 	private int userID;
 
 	public int getUserID() {
@@ -94,11 +94,11 @@ public class User {
 		return true;
 	}
 
-	public boolean isAccess() {
+	public int isAccess() {
 		return access;
 	}
 
-	public void setAccess(boolean access) {
+	public void setAccess(int access) {
 		this.access = access;
 	}
 

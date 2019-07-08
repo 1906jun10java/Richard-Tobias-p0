@@ -31,25 +31,28 @@ public class UserDAOImp implements UserDAO {
 
 	public List<User> getUserList() throws SQLException {
 		Connection conn = cf.getConnection();
-		String sql = "SELECT * FROM SYSTEM_USERS";
+		String sql = "SELECT USER_ID, USER_NAME, USERNAME, PASS, USER_TYPE FROM SYSTEM_USERS";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
 		User u = null;
 		while (rs.next()) {
-			u = new User(rs.getString(3), rs.getString(4), rs.getString(2), rs.getInt(1));
+			u = new User(rs.getInt("USER_ID"), rs.getString("USERNAME"), rs.getString("PASS"), rs.getString("USER_NAME"), rs.getInt("USER_TYPE"));
 			userList.add(u);
 		}
 
 		return userList;
 	}
 
-	
-	/*
-	 * public boolean validateUser(String username) throws SQLException{ Connection
-	 * conn = cf.getConnection(); String sql =
-	 * "SELECT * FROM SYSTEM_USERS WHERE USERNAME = ?"; PreparedStatement stmt =
-	 * conn.prepareStatement(sql); stmt.setString(1, username); ResultSet rs =
-	 * stmt.executeQuery(); if(rs.getFetchSize() > 0) {
-	 * System.out.println("user exists"); return true; }else { return false; } }
-	 */
+	  public boolean validateUser(String username) throws SQLException{
+		  Connection conn = cf.getConnection(); String sql = "SELECT * FROM SYSTEM_USERS WHERE USERNAME = ? AND ACCESS = 1";
+		  PreparedStatement stmt = conn.prepareStatement(sql);
+		  stmt.setString(1, username);
+		  ResultSet rs =stmt.executeQuery();
+		  if(rs.getFetchSize() > 0) {
+			  return true;
+		  }else { 
+			  return false; 
+		  } 
+	  }
+	 
 }

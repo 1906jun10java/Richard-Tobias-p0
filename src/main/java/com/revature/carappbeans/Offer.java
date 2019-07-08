@@ -8,12 +8,11 @@ public class Offer {
 	private String offer_date;
 	private int accepted;
 	
-	public Offer(int user_id, int car_id, double current_offer, String offer_date, int accepted) {
+	public Offer(int user_id, int car_id, double current_offer, int accepted) {
 		super();
 		this.user_id = user_id;
 		this.car_id = car_id;
 		this.current_offer = current_offer;
-		this.offer_date = offer_date;
 		this.accepted = accepted;
 	}
 
